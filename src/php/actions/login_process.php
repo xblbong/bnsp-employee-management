@@ -52,6 +52,7 @@ if (!empty($errors)) {
 // 4. Autentikasi ke database MySQL
 $user = authenticateUser($username, $password);
 
+//jika user sama dengan tipe null, maka set old input username, set flash error, dan redirect ke login.php
 if ($user === null) {
     setOldInput(['username' => $username]);
     setFlash('error', 'Username atau password tidak sesuai.');

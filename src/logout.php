@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     isLoggedIn() ? redirect('dashboard.php') : redirect('login.php');
 }
 
+//jika verifikasi token CSRF gagal, maka set flash error dan redirect ke dashboard.php
 if (!verifyCsrfToken($_POST['csrf_token'] ?? null)) {
     setFlash('error', 'Permintaan logout tidak valid.');
     redirect('dashboard.php');

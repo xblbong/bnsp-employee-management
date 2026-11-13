@@ -37,6 +37,12 @@ function authenticateUser(string $username, string $password): ?array
         return null;
     }
 
+    /**
+     * Saat user mengetik password, authenticateUser() mencocokkannya dengan hash bcrypt di database memakai password_verify(). 
+     * Jika gagal (baik karena username tidak ada maupun password salah), 
+     * pesan error yang tampil sengaja disamakan ("Username atau password tidak sesuai")
+     * agar penyerang tidak bisa menebak username mana yang terdaftar.
+     */
     if (!password_verify($password, $user['password_hash'])) {
         return null;
     }
