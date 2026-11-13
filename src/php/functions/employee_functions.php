@@ -24,8 +24,8 @@ function getEmployeeSummaryStats(): array
     $row = $stmt->fetch();
 
     return [
-        'total' => (int) ($row['total'] ?? 0),
-        'active' => (int) ($row['active'] ?? 0),
+        'total'    => (int) ($row['total'] ?? 0),
+        'active'   => (int) ($row['active'] ?? 0),
         'inactive' => (int) ($row['inactive'] ?? 0),
     ];
 }
@@ -91,4 +91,98 @@ function getAllEmployees(string $search = '', string $status = ''): array
     $stmt->execute($params);
 
     return $stmt->fetchAll();
+}
+
+/**
+ * Mengecek apakah NIP / Kode Pegawai sudah dipakai pegawai lain.
+ */
+function isEmployeeCodeExists(string $employeeCode, ?int $excludeId = null): bool
+{
+    $pdo = getDbConnection();
+
+    $sql = 'SELECT 1 FROM employees WHERE employee_code = :code';
+    $params = [':code' => $employeeCode];
+
+    if ($excludeId !== null) {
+        $sql .= ' AND id != :exclude_id';
+        $params[':exclude_id'] = $excludeId;
+    }
+
+    $sql .= ' LIMIT 1';
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchColumn() !== false;
+}
+
+/**
+ * Mengecek apakah alamat Email sudah dipakai pegawai lain.
+ */
+function isEmployeeEmailExists(string $email, ?int $excludeId = null): bool
+{
+    $pdo = getDbConnection();
+
+    $sql = 'SELECT 1 FROM employees WHERE email = :email';
+    $params = [':email' => $email];
+
+    if ($excludeId !== null) {
+        $sql .= ' AND id != :exclude_id';
+        $params[':exclude_id'] = $excludeId;
+    }
+
+    $sql .= ' LIMIT 1';
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchColumn() !== false;
+}
+
+/**
+ * Menyimpan data pegawai baru ke database dan mengembalikan ID baris barunya.
+ */
+function createEmployee(array $data, ?int $createdBy = null): int
+{
+    $pdo = getDbConnection();
+
+    $sql = 'INSERT INTO employees (
+                employee_code,
+                full_name,
+                email,
+                phone,
+                department_id,
+                position,
+                hire_date,
+                status,
+                address,
+                created_by
+            ) VALUES (
+                :employee_code,
+                :full_name,
+                :email,
+                :phone,
+                :department_id,
+                :position,
+                :hire_date,
+                :status,
+                :address,
+                :created_by
+            )';
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':employee_code' => $data['employee_code'],
+        ':full_name'     => $data['full_name'],
+        ':email'         => $data['email'],
+        ':phone'         => $data['phone'],
+        ':department_id' => (int) $data['department_id'],
+        ':position'      => $data['position'],
+        ':hire_date'     => $data['hire_date'],
+        ':status'        => $data['status'],
+        ':address'       => $data['address'] !== '' ? $data['address'] : null,
+        ':created_by'    => $createdBy,
+    ]);
+
+    return (int) $pdo->lastInsertId();
 }
