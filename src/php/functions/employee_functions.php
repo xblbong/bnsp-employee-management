@@ -213,6 +213,41 @@ function getEmployeeById(int $id): ?array
 }
 
 /**
+ * Memperbarui data pegawai yang sudah ada berdasarkan ID.
+ */
+function updateEmployee(int $id, array $data): bool
+{
+    $pdo = getDbConnection();
+
+    $sql = 'UPDATE employees
+            SET employee_code = :employee_code,
+                full_name     = :full_name,
+                email         = :email,
+                phone         = :phone,
+                department_id = :department_id,
+                position      = :position,
+                hire_date     = :hire_date,
+                status        = :status,
+                address       = :address
+            WHERE id = :id';
+
+    $stmt = $pdo->prepare($sql);
+
+    return $stmt->execute([
+        ':employee_code' => $data['employee_code'],
+        ':full_name'     => $data['full_name'],
+        ':email'         => $data['email'],
+        ':phone'         => $data['phone'],
+        ':department_id' => (int) $data['department_id'],
+        ':position'      => $data['position'],
+        ':hire_date'     => $data['hire_date'],
+        ':status'        => $data['status'],
+        ':address'       => $data['address'] !== '' ? $data['address'] : null,
+        ':id'            => $id,
+    ]);
+}
+
+/**
  * Mengubah format tanggal database menjadi format Indonesia yang mudah dibaca.
  */
 function formatIndonesianDate(?string $dateString, bool $withTime = false): string
