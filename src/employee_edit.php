@@ -22,7 +22,7 @@ if ($employee === null) {
     http_response_code(404);
 }
 
-$pageTitle = $employee !== null ? 'Edit Pegawai — ' . $employee['full_name'] : 'Pegawai Tidak Ditemukan';
+$pageTitle = $employee !== null ? 'Edit Pegawai - ' . $employee['full_name'] : 'Pegawai Tidak Ditemukan';
 $activePage = 'employees';
 
 $departments = $employee !== null ? getAllDepartments() : [];
@@ -126,7 +126,7 @@ require_once __DIR__ . '/views/partials/alerts.php';
                             value="<?= e($getFieldValue('employee_code')) ?>"
                             placeholder="Contoh: PEG-004"
                             maxlength="20"
-                            class="w-full h-10 rounded-lg border px-3.5 text-sm font-mono text-slate-900 placeholder:font-sans placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors <?= isset($errors['employee_code']) ? 'border-red-500 bg-red-50/30' : 'border-slate-300 bg-white' ?>">
+                            class="w-full uppercase h-10 rounded-lg border px-3.5 text-sm font-mono text-slate-900 placeholder:font-sans placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors <?= isset($errors['employee_code']) ? 'border-red-500 bg-red-50/30' : 'border-slate-300 bg-white' ?>">
                         <p class="mt-1 text-xs text-red-600 <?= isset($errors['employee_code']) ? '' : 'hidden' ?>" data-error-for="employee_code">
                             <?= e($errors['employee_code'] ?? '') ?>
                         </p>
@@ -199,7 +199,7 @@ require_once __DIR__ . '/views/partials/alerts.php';
                             <?php foreach ($departments as $dept): ?>
                                 <?php $deptId = (string) $dept['id']; ?>
                                 <option value="<?= e($deptId) ?>" <?= $selectedDepartment === $deptId ? 'selected' : '' ?>>
-                                    <?= e($dept['code'] . ' — ' . $dept['name']) ?>
+                                    <?= e($dept['code'] . ' - ' . $dept['name']) ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
@@ -296,4 +296,7 @@ require_once __DIR__ . '/views/partials/alerts.php';
     <?php endif; ?>
 </div>
 
-<?php require_once __DIR__ . '/views/partials/footer.php'; ?>
+<?php
+$pageScripts = ['js/validation.js'];
+require_once __DIR__ . '/views/partials/footer.php';
+?>

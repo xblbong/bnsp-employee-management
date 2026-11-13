@@ -21,7 +21,7 @@ if ($employee === null) {
     http_response_code(404);
 }
 
-$pageTitle = $employee !== null ? 'Detail Pegawai — ' . $employee['full_name'] : 'Pegawai Tidak Ditemukan';
+$pageTitle = $employee !== null ? 'Detail Pegawai - ' . $employee['full_name'] : 'Pegawai Tidak Ditemukan';
 $activePage = 'employees';
 
 require_once __DIR__ . '/views/partials/header.php';
@@ -145,7 +145,7 @@ require_once __DIR__ . '/views/partials/alerts.php';
                     <div>
                         <dt class="text-xs font-semibold uppercase tracking-wider text-slate-400">Departemen</dt>
                         <dd class="mt-1 text-sm text-slate-900">
-                            <?= e($employee['department_code'] . ' — ' . $employee['department_name']) ?>
+                            <?= e($employee['department_code'] . ' - ' . $employee['department_name']) ?>
                         </dd>
                     </div>
 

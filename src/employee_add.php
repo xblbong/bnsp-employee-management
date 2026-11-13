@@ -135,7 +135,7 @@ require_once __DIR__ . '/views/partials/alerts.php';
                     <?php foreach ($departments as $dept): ?>
                         <?php $deptId = (string) $dept['id']; ?>
                         <option value="<?= e($deptId) ?>" <?= $selectedDepartment === $deptId ? 'selected' : '' ?>>
-                            <?= e($dept['code'] . ' — ' . $dept['name']) ?>
+                            <?= e($dept['code'] . ' - ' . $dept['name']) ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
@@ -230,4 +230,7 @@ require_once __DIR__ . '/views/partials/alerts.php';
     </form>
 </section>
 
-<?php require_once __DIR__ . '/views/partials/footer.php'; ?>
+<?php
+$pageScripts = ['js/validation.js'];
+require_once __DIR__ . '/views/partials/footer.php';
+?>

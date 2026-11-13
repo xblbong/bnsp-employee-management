@@ -269,4 +269,10 @@ require_once __DIR__ . '/views/partials/alerts.php';
     </div>
 </div>
 
-<?php require_once __DIR__ . '/views/partials/footer.php'; ?>
+<?php
+$pageScripts = [
+    'assets/vendor/axios/axios.min.js',
+    'js/employees.js',
+];
+require_once __DIR__ . '/views/partials/footer.php';
+?>

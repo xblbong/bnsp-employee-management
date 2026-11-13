@@ -305,3 +305,18 @@ function getNameInitials(string $fullName): string
 
     return $first . $second;
 }
+
+/**
+ * Menghapus data pegawai berdasarkan ID.
+ * Mengembalikan true jika tepat ada baris yang terhapus.
+ */
+function deleteEmployee(int $id): bool
+{
+    $pdo = getDbConnection();
+
+    $sql = 'DELETE FROM employees WHERE id = :id';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':id' => $id]);
+
+    return $stmt->rowCount() > 0;
+}

@@ -22,7 +22,7 @@ $isLoggedOut = isset($_GET['logged_out']) && $_GET['logged_out'] === '1'; //bern
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masuk — <?= e(APP_NAME) ?></title>
+    <title>Masuk - <?= e(APP_NAME) ?></title>
     <link rel="stylesheet" href="<?= e(baseUrl('css/tailwind.css')) ?>">
     <link rel="stylesheet" href="<?= e(baseUrl('assets/vendor/bootstrap-icons/bootstrap-icons.min.css')) ?>">
 </head>
@@ -73,7 +73,7 @@ $isLoggedOut = isset($_GET['logged_out']) && $_GET['logged_out'] === '1'; //bern
             <?php endif; ?>
 
             <!-- Form Login -->
-            <form id="loginForm" action="<?= e(baseUrl('php/actions/login_process.php')) ?>" method="POST" class="space-y-4">
+            <form id="loginForm" action="<?= e(baseUrl('php/actions/login_process.php')) ?>" method="POST" class="space-y-4" novalidate>
                 <?= csrfField() ?>
 
                 <!-- Username -->
@@ -127,7 +127,7 @@ $isLoggedOut = isset($_GET['logged_out']) && $_GET['logged_out'] === '1'; //bern
             &copy; <?= date('Y') ?> <?= e(APP_NAME) ?>
         </p>
     </main>
-
+    <script  src="<?= e(baseUrl('js/validation.js')) ?>"></script>
 </body>
 
 </html>

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 $documentTitle = isset($pageTitle) && $pageTitle !== ''
-    ? $pageTitle . ' — ' . APP_NAME
+    ? $pageTitle . ' - ' . APP_NAME
     : APP_NAME;
 ?>
 <!DOCTYPE html>
