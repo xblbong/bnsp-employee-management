@@ -46,7 +46,7 @@ $isLoggedOut = isset($_GET['logged_out']) && $_GET['logged_out'] === '1'; //bern
             </div>
 
             <!-- Notifikasi Berhasil Logout -->
-            //Jika pengguna baru saja logout ($isLoggedOut bernilai benar karena ada ?logged_out=1 di URL) DAN (&&) tidak ada pesan flash lain ($flash === null), maka tampilkan kotak hijau bertuliskan 'Anda telah berhasil keluar dari sistem.'
+            <!-- Jika pengguna baru saja logout ($isLoggedOut bernilai benar karena ada ?logged_out=1 di URL) DAN (&&) tidak ada pesan flash lain ($flash === null), maka tampilkan kotak hijau bertuliskan 'Anda telah berhasil keluar dari sistem.' -->
             <?php if ($isLoggedOut && $flash === null): ?>
                 <div class="mb-5 flex items-start gap-2.5 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800" role="alert">
                     <i class="bi bi-check-circle-fill text-green-600 mt-0.5" aria-hidden="true"></i>
@@ -54,7 +54,7 @@ $isLoggedOut = isset($_GET['logged_out']) && $_GET['logged_out'] === '1'; //bern
                 </div>
             <?php endif; ?>
 
-            //ika ada pesan flash sementara di sesi ($flash tidak kosong / !== null), tampilkan kotak alert.
+            <!-- Jika ada pesan flash sementara di sesi ($flash tidak kosong / !== null), tampilkan kotak alert. -->
             <!-- Flash Alert Error / Info -->
             <?php if ($flash !== null): ?>
                 <?php
