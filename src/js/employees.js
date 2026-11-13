@@ -404,6 +404,7 @@ function initEmployeeSearchAjax(baseUrl) {
             loadingIndicator.classList.remove('hidden');
         }
 
+        //untuk mengirim request GET ke API employee_search.php dengan parameter q dan status
         try {
             const response = await axios.get(baseUrl + '/php/api/employee_search.php', {
                 params: { q: q, status: status }
@@ -430,7 +431,7 @@ function initEmployeeSearchAjax(baseUrl) {
 
     searchInput.addEventListener('input', function () {
         clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(fetchEmployees, 300);
+        debounceTimer = setTimeout(fetchEmployees, 300); //tunggu 300ms sebelum memanggil fetchEmployees untuk mengurangi jumlah request saat mengetik
     });
 
     statusFilter.addEventListener('change', fetchEmployees);

@@ -15,14 +15,15 @@ function startSecureSession(): void
         return;
     }
 
+    //jika php_sapi tidak sama dengan 'cli', setel parameter cookie sesi untuk keamanan tambahan
     if (PHP_SAPI !== 'cli') {
         session_set_cookie_params([
-            'lifetime' => 0,
-            'path'     => '/',
+            'lifetime' => 0, //Cookie sesi akan habis saat browser ditutup.
+            'path'     => '/', //untuk semua path di domain.
             'httponly' => true, //Cookie sesi tidak bisa dicuri oleh JavaScript browser.
-            'samesite' => 'Lax',
+            'samesite' => 'Lax', //Mencegah cookie dikirim saat permintaan lintas situs (CSRF).
         ]);
-    }
+    } 
 
     session_start();
 }
