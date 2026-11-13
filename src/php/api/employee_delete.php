@@ -53,17 +53,17 @@ if ($employeeId === false || $employeeId === null || $employeeId <= 0) {
     exit;
 }
 
-$employee = getEmployeeById($employeeId);
-if ($employee === null) {
-    http_response_code(404);
-    echo json_encode([
-        'success' => false,
-        'message' => 'Data pegawai tidak ditemukan atau sudah dihapus sebelumnya.',
-    ]);
-    exit;
-}
-
 try {
+    $employee = getEmployeeById($employeeId);
+    if ($employee === null) {
+        http_response_code(404);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Data pegawai tidak ditemukan atau sudah dihapus sebelumnya.',
+        ]);
+        exit;
+    }
+
     $deleted = deleteEmployee($employeeId);
 
     if (!$deleted) {

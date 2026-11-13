@@ -225,13 +225,15 @@ require_once __DIR__ . '/views/partials/alerts.php';
     </div>
 </section>
 
-<!-- Modal Konfirmasi Hapus (akan dihubungkan ke Axios AJAX pada langkah Delete/AJAX) -->
+<!-- Modal Konfirmasi Hapus -->
 <div
     id="deleteConfirmModal"
+    data-endpoint="<?= e(baseUrl('php/api/employee_delete.php')) ?>"
     class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 p-4"
     role="dialog"
     aria-modal="true"
-    aria-labelledby="deleteModalTitle">
+    aria-labelledby="deleteModalTitle"
+    aria-hidden="true">
     <div class="w-full max-w-md rounded-xl bg-white border border-slate-200 shadow-lg p-6">
         <div class="flex items-start gap-3">
             <div class="w-10 h-10 rounded-full bg-red-50 text-red-600 flex items-center justify-center shrink-0">
