@@ -1,0 +1,8 @@
+# Mengabaikan folder node_modules
+node_modules/
+
+# Mengabaikan file log
+*.log
+
+# Mengabaikan file konfigurasi lokal
+.env
