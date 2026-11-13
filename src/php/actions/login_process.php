@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 /**
  * Action Handler: Memproses pengiriman form Login (POST).
+ * login.php hanya bertugas menampilkan form, sedangkan seluruh proses validasi, cek CSRF, dan query database terjadi di php/actions/login_process.php
  */
 
 require_once __DIR__ . '/../config/app.php';
