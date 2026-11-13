@@ -128,7 +128,7 @@ require_once __DIR__ . '/views/partials/alerts.php';
                             : 'bg-slate-100 text-slate-600';
                         ?>
                         <tr data-employee-row="<?= $empId ?>" class="hover:bg-slate-50/80 transition-colors">
-                            <td class="px-5 py-3.5 font-mono text-xs text-slate-600 whitespace-nowrap">
+                            <td class="px-5 py-3.5 uppercase font-mono text-xs text-slate-600 whitespace-nowrap">
                                 <?= e($employee['employee_code']) ?>
                             </td>
                             <td class="px-5 py-3.5 whitespace-nowrap">
