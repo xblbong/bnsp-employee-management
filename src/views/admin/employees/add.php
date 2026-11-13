@@ -1,4 +1,13 @@
-
+<?php
+/**
+ *  * Deklarasi variabel yang digunakan dalam tampilan ini untuk membantu IDE dalam memberikan saran kode (code completion) dan pemeriksaan tipe data.
+ * @var array<int, array<string, mixed>> $departments
+ * @var array<string, string> $errors
+ * @var array<string, mixed> $oldInput
+ * @var string $selectedStatus
+ * @var string $selectedDepartment
+ */
+?>
 <!-- Navigasi Kembali & Judul -->
 <div class="mb-6 max-w-4xl">
     <a

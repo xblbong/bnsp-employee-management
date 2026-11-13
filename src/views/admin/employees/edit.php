@@ -1,4 +1,12 @@
-
+<?php
+/**
+ *  * Deklarasi variabel yang digunakan dalam tampilan ini untuk membantu IDE dalam memberikan saran kode (code completion) dan pemeriksaan tipe data.
+ * @var array<string, mixed>|null $employee
+ * @var array<int, array<string, mixed>> $departments
+ * @var array<string, string> $errors
+ * @var \Closure(string, string=): string $getFieldValue
+ */
+?>
 <div class="max-w-4xl">
     <!-- Baris Navigasi Kembali -->
     <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">

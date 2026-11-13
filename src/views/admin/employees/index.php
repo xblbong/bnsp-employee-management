@@ -1,4 +1,12 @@
-
+<?php
+/**
+ *  * Deklarasi variabel yang digunakan dalam tampilan ini untuk membantu IDE dalam memberikan saran kode (code completion) dan pemeriksaan tipe data.
+ * @var string $search
+ * @var string $statusFilter
+ * @var array<int, array<string, mixed>> $employees
+ * @var bool $isFiltering
+ */
+?>
 <!-- Header Halaman & Tombol Tambah -->
 <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
     <div>

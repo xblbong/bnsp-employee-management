@@ -1,4 +1,12 @@
 
+<?php
+/**
+ * Deklarasi variabel yang digunakan dalam tampilan ini untuk membantu IDE dalam memberikan saran kode (code completion) dan pemeriksaan tipe data.
+ * @var array<string, mixed>|null $user
+ * @var array{total: int, active: int, inactive: int} $stats
+ * @var array<int, array<string, mixed>> $recentEmployees
+ */
+?>
 <!-- Header Halaman -->
 <div class="mb-6">
     <h1 class="text-2xl font-bold tracking-tight text-slate-900">Dashboard</h1>

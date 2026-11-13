@@ -1,4 +1,6 @@
-
+<?php
+/** @var array<string, mixed>|null $employee */
+?>
 <div class="max-w-4xl">
     <!-- Baris Navigasi Atas -->
     <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
