@@ -186,3 +186,87 @@ function createEmployee(array $data, ?int $createdBy = null): int
 
     return (int) $pdo->lastInsertId();
 }
+
+/**
+ * Mengambil detail lengkap satu pegawai berdasarkan ID (dipakai di Detail & Edit).
+ */
+function getEmployeeById(int $id): ?array
+{
+    $pdo = getDbConnection();
+
+    $sql = 'SELECT e.id, e.employee_code, e.full_name, e.email, e.phone,
+                   e.department_id, e.position, e.hire_date, e.status,
+                   e.address, e.created_by, e.created_at, e.updated_at,
+                   d.name AS department_name, d.code AS department_code,
+                   u.full_name AS created_by_name
+            FROM employees e
+            INNER JOIN departments d ON e.department_id = d.id
+            LEFT JOIN users u ON e.created_by = u.id
+            WHERE e.id = :id
+            LIMIT 1';
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':id' => $id]);
+    $row = $stmt->fetch();
+
+    return $row !== false ? $row : null;
+}
+
+/**
+ * Mengubah format tanggal database menjadi format Indonesia yang mudah dibaca.
+ */
+function formatIndonesianDate(?string $dateString, bool $withTime = false): string
+{
+    if ($dateString === null || trim($dateString) === '') {
+        return '-';
+    }
+
+    try {
+        $dt = new DateTime($dateString);
+    } catch (Exception $e) {
+        return $dateString;
+    }
+
+    $months = [
+        1  => 'Januari',
+        2  => 'Februari',
+        3  => 'Maret',
+        4  => 'April',
+        5  => 'Mei',
+        6  => 'Juni',
+        7  => 'Juli',
+        8  => 'Agustus',
+        9  => 'September',
+        10 => 'Oktober',
+        11 => 'November',
+        12 => 'Desember',
+    ];
+
+    $day = $dt->format('d');
+    $month = $months[(int) $dt->format('n')] ?? $dt->format('m');
+    $year = $dt->format('Y');
+
+    $formatted = $day . ' ' . $month . ' ' . $year;
+
+    if ($withTime) {
+        $formatted .= ', ' . $dt->format('H:i') . ' WIB';
+    }
+
+    return $formatted;
+}
+
+/**
+ * Mengambil maksimal 2 huruf inisial dari nama lengkap untuk avatar profil.
+ */
+function getNameInitials(string $fullName): string
+{
+    $words = preg_split('/\s+/', trim($fullName)) ?: [];
+    if (empty($words) || $words[0] === '') {
+        return 'PG';
+    }
+
+    $first = mb_strtoupper(mb_substr($words[0], 0, 1));
+    $second = isset($words[1]) ? mb_strtoupper(mb_substr($words[1], 0, 1)) : '';
+
+    return $first . $second;
+}
