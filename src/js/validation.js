@@ -6,6 +6,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     initLoginValidation();
     initEmployeeFormValidation();
+    initPasswordToggle();
 });
 
 /**
@@ -276,3 +277,38 @@ function initEmployeeFormValidation() {
         setSubmitLoading(form, 'Menyimpan...');
     });
 }
+
+/**
+ * Inisialisasi fitur toggle visibilitas password (lihat / sembunyikan).
+ */
+function initPasswordToggle() {
+    const toggleBtn = document.getElementById('togglePassword');
+        if (!toggleBtn || toggleBtn.dataset.toggleBound) {
+            return;
+        }
+        toggleBtn.dataset.toggleBound = 'true';
+
+        const passwordInput = document.getElementById('password') || document.querySelector('input[name="password"]');
+        if (!passwordInput) {
+            return;
+        }
+
+            toggleBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const isPassword = passwordInput.getAttribute('type') === 'password';
+                passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+
+                const icon = toggleBtn.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('bi-eye', isPassword);
+                    icon.classList.toggle('bi-eye-slash', !isPassword);
+                }
+
+                toggleBtn.setAttribute(
+                    'aria-label',
+                    isPassword ? 'Sembunyikan password' : 'Lihat password'
+                );
+            });
+        }

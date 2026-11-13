@@ -33,3 +33,187 @@
     transform: translateY(-4px);
     transition: opacity 200ms ease, transform 200ms ease;
 }
+
+/* Hilangkan ikon bawaan browser (seperti Edge) agar tidak menimpa tombol custom */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+#togglePassword {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* login admin */
+/* Layout responsif agar tetap full-size & konsisten meski css/tailwind.css belum di-rebuild */
+.login-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 18% 20%, rgba(96, 165, 250, 0.35), transparent 45%),
+        radial-gradient(circle at 82% 85%, rgba(30, 58, 138, 0.55), transparent 50%),
+        linear-gradient(155deg, #2563eb 0%, #1d4ed8 48%, #1e3a8a 100%);
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 440px;
+}
+
+.login-card {
+    background-color: #ffffff;
+    border-radius: 1.25rem;
+    box-shadow: 0 20px 45px -15px rgba(15, 23, 42, 0.25);
+    overflow: hidden;
+}
+
+.login-visual-wrap {
+    display: none;
+}
+
+.login-form-panel {
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form-inner {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login-copyright {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* iPad & Laptop (>= 768px): Full-size 2 kolom */
+@media (min-width: 768px) {
+    .login-page {
+        background: #f8fafc;
+        padding: 1.25rem;
+    }
+
+    .login-wrapper {
+        max-width: 1360px;
+    }
+
+    .login-card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: clamp(600px, calc(100vh - 6rem), 820px);
+        border: 1px solid #e2e8f0;
+        border-radius: 1.5rem;
+        box-shadow: 0 18px 40px -20px rgba(15, 23, 42, 0.14);
+    }
+
+    .login-visual-wrap {
+        display: flex;
+        padding: 0.875rem;
+    }
+
+    .login-visual {
+        width: 100%;
+        height: 100%;
+        border-radius: 1.125rem;
+        padding: 2.25rem;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        background: #1e3a8a;
+    }
+
+    .login-visual-image {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .login-visual::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background:
+            radial-gradient(circle at 20% 18%, rgba(147, 197, 253, 0.45), transparent 46%),
+            radial-gradient(circle at 85% 28%, rgba(59, 130, 246, 0.45), transparent 45%),
+            radial-gradient(circle at 55% 88%, rgba(30, 58, 138, 0.75), transparent 55%),
+            linear-gradient(145deg, rgba(37, 99, 235, 0.78) 0%, rgba(29, 78, 216, 0.76) 52%, rgba(30, 58, 138, 0.9) 100%);
+    }
+
+    .login-visual> :not(.login-visual-image) {
+        position: relative;
+        z-index: 2;
+    }
+
+    .login-form-panel {
+        padding: 2.5rem 2.25rem;
+    }
+
+    .login-mobile-badge {
+        display: none;
+    }
+
+    .login-copyright {
+        color: #94a3b8;
+    }
+}
+
+@media (min-width: 1024px) {
+    .login-page {
+        padding: 1.75rem 2rem;
+    }
+
+    .login-visual-wrap {
+        padding: 1rem;
+    }
+
+    .login-visual {
+        padding: 3rem;
+    }
+
+    .login-form-panel {
+        padding: 3rem 3.5rem;
+    }
+}
+
+@media (min-width: 768px) and (max-height: 700px) {
+    .login-page {
+        justify-content: flex-start;
+        padding: 0.75rem 1rem;
+    }
+
+    .login-wrapper {
+        max-width: 440px;
+    }
+
+    .login-card {
+        display: block;
+        min-height: 0;
+    }
+
+    .login-visual-wrap {
+        display: none;
+    }
+
+    .login-form-panel {
+        padding: 1rem 1.5rem;
+    }
+
+    .login-mobile-badge {
+        display: none;
+    }
+
+    .login-copyright {
+        color: #94a3b8;
+    }
+}
