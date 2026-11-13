@@ -119,5 +119,4 @@ $navItems = [
     </header>
 
     <!-- Area Konten Halaman (dibuka di sini, ditutup di footer.php) -->
-    <main class="flex-1 p-4 sm:p-6 lg:p-8 max-w-6xl w-full mx-auto animate-fade-in-up"></main>
-</div>
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 max-w-6xl w-full mx-auto animate-fade-in-up">

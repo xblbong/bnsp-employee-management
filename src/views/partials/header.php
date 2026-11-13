@@ -20,5 +20,4 @@ $documentTitle = isset($pageTitle) && $pageTitle !== ''
 </head>
 
 <body class="min-h-screen bg-slate-50 text-slate-900 antialiased">
-    <div class="min-h-screen flex bg-slate-50"></div>
-</body>
+    <div class="min-h-screen flex bg-slate-50">
