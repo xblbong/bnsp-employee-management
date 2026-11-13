@@ -49,7 +49,7 @@ $isLoggedOut = isset($_GET['logged_out']) && $_GET['logged_out'] === '1';
             <?php if ($isLoggedOut && $flash === null): ?>
                 <div class="mb-5 flex items-start gap-2.5 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800" role="alert">
                     <i class="bi bi-check-circle-fill text-green-600 mt-0.5" aria-hidden="true"></i>
-                    <span>Anda telah berhasil keluar dari sistem.</span>
+                    <span>Anda berhasil keluar dari sistem</span>
                 </div>
             <?php endif; ?>
 
